@@ -1,0 +1,27 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n=int(input())
+
+output = ["Invalid"]*n
+for j in range(n):
+    l=input()
+    lst=list(l)
+    if (len(l)==16 and l.isdigit()):
+        if (lst[0]== '4' or lst[0]=='5' or lst[0]=='6'):
+            for i in range(12):
+                if( int(lst[i])==int(lst[i+1]) and int(lst[i+1])==int(lst[i+2]) and int(lst[i+2])==int(lst[i+3])):
+                    output[j]="Invalid"
+                else:
+                    output[j]="Valid"
+    elif(len(l)==19):
+        if (lst[0]== '4' or lst[0]=='5' or lst[0]=='6') and l.count('-')==3 and l[4]=='-' and l[9]=='-' and l[14]=='-' :
+            lst1=l.replace('-','',3)
+            if lst1.isdigit() and len(lst1)==16:
+                val = True
+                for i in range(12):
+                    if( int(lst1[i])==int(lst1[i+1]) and int(lst1[i+1])==int(lst1[i+2]) and int(lst1[i+2])==int(lst1[i+3])):
+                        val = False
+                    #else:
+                    #    output[j]="Valid"
+                if val:
+                    output[j]="Valid"
+print(*output,sep = "\n")
